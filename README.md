@@ -1,9 +1,18 @@
 <div align="center">
-  <img src="src/assets/logo.png" alt="MonitorX Logo" width="160" />
+  <table width="100%">
+    <tr>
+      <td align="center" width="30%">
+        <img src="src/assets/logo.png" alt="MonitorX Logo" width="160" />
+      </td>
+      <td align="left" width="70%">
+        <h1>MonitorX</h1>
+        <p><strong>Enterprise-Grade Real-Time Monitoring & Interaction Platform</strong></p>
+        <p><em>Empowering seamless, zero-latency classroom workflows with Next-Gen P2P WebRTC.</em></p>
+      </td>
+    </tr>
+  </table>
 
-  # MonitorX
-  
-  **Enterprise-Grade Real-Time Monitoring & Interaction Platform**
+  <br/>
 
   [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
   [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
@@ -45,8 +54,8 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Atharv1136/full-spectrum-app.git
-   cd full-spectrum-app
+   git clone https://github.com/Atharv1136/MonitorX.git
+   cd MonitorX
    ```
 
 2. **Install dependencies:**
