@@ -13,6 +13,7 @@ import { useScreenShare } from '@/hooks/useScreenShare';
 import { useMessages } from '@/hooks/useMessages';
 import ScreenTile from '@/components/session/ScreenTile';
 import type { Session, SessionParticipant, Message, HelpRequest, Profile } from '@/types';
+import logo from '@/assets/logo.png';
 
 // ─── Fullscreen overlay for expanded participant ──────────────────────────────
 function FullscreenModal({
@@ -209,6 +210,15 @@ export default function LiveSessionPage() {
           >
             <ArrowLeft className="h-4 w-4" />
           </motion.button>
+
+          <div className="flex items-center gap-4 border-r border-border/50 pr-4 mr-2">
+            <div className="flex items-center gap-2">
+              <img src={logo} alt="MonitorX" className="h-7 w-7 object-contain drop-shadow-[0_0_8px_hsl(217_91%_60%/0.3)] block" />
+              <span className="text-lg font-bold text-foreground hidden sm:block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                Monitor<span className="text-gradient">X</span>
+              </span>
+            </div>
+          </div>
 
           <div>
             <div className="flex items-center gap-2">

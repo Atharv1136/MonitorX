@@ -60,6 +60,7 @@ export function useScreenShare(
   const peerConnections = useRef<Map<string, RTCPeerConnection>>(new Map());
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
+  const pendingCandidates = useRef<Map<string, RTCIceCandidateInit[]>>(new Map());
 
   const channelName = `session:${sessionId}`;
 
@@ -184,6 +185,12 @@ export function useScreenShare(
         const pc = createHostPeerConnection(from);
 
         await pc.setRemoteDescription(new RTCSessionDescription(sdp));
+        
+        // Add any queued ICE candidates for this peer
+        const pending = pendingCandidates.current.get(from) || [];
+        pending.forEach(c => pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error));
+        pendingCandidates.current.delete(from);
+
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
 
@@ -214,6 +221,11 @@ export function useScreenShare(
         const pc = peerConnections.current.get('host');
         if (pc && pc.signalingState !== 'stable') {
           await pc.setRemoteDescription(new RTCSessionDescription(sdp));
+          
+          // Add any queued ICE candidates for host
+          const pending = pendingCandidates.current.get('host') || [];
+          pending.forEach(c => pc.addIceCandidate(new RTCIceCandidate(c)).catch(console.error));
+          pendingCandidates.current.delete('host');
         }
       });
     }
@@ -232,6 +244,11 @@ export function useScreenShare(
         } catch {
           // ignore stale candidates
         }
+      } else {
+        if (!pendingCandidates.current.has(pcKey)) {
+          pendingCandidates.current.set(pcKey, []);
+        }
+        pendingCandidates.current.get(pcKey)!.push(candidate);
       }
     });
 
