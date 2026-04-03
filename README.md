@@ -2,7 +2,7 @@
   <table width="100%">
     <tr>
       <td align="center" width="30%">
-        <img src="src/assets/logo.png" alt="MonitorX Logo" width="160" />
+        <img src="src/assets/logo.png" alt="MonitorX Logo" width="250" />
       </td>
       <td align="left" width="70%">
         <h1>MonitorX</h1>
